@@ -69,11 +69,11 @@ class TimestampableListener
         } else {
             $reflectionClass = new \ReflectionClass(get_class($entity));
             if(!$reflectionClass->hasProperty($field)) {
-                throw new Configuration\BehaviourConfigurationException('Slug field "' . $field . '" does not exist for class ' . get_class($entity));
+                throw new Configuration\BehaviourConfigurationException('Field "' . $field . '" does not exist for class ' . get_class($entity));
             } else {
                 $property = $reflectionClass->getProperty($field);
                 if($property->isPrivate() || $property->isProtected()) {
-                    throw new Configuration\BehaviourConfigurationException('Slug field "' . $field . '" is not accessible ' . get_class($entity));
+                    throw new Configuration\BehaviourConfigurationException('Field "' . $field . '" is not accessible ' . get_class($entity));
                 } else {
                     $value = $entity->$field;
                 }
@@ -89,11 +89,11 @@ class TimestampableListener
         } else {
             $reflectionClass = new \ReflectionClass(get_class($entity));
             if(!$reflectionClass->hasProperty($field)) {
-                throw new Configuration\BehaviourConfigurationException('Slug field "' . $field . '" does not exist for class ' . get_class($entity));
+                throw new Configuration\BehaviourConfigurationException('Field "' . $field . '" does not exist for class ' . get_class($entity));
             } else {
                 $property = $reflectionClass->getProperty($field);
                 if($property->isPrivate() || $property->isProtected()) {
-                    throw new Configuration\BehaviourConfigurationException('Slug field "' . $field . '" is not accessible ' . get_class($entity));
+                    throw new Configuration\BehaviourConfigurationException('Field "' . $field . '" is not accessible ' . get_class($entity));
                 } else {
                     $entity->$field = $value;
                 }
