@@ -91,3 +91,50 @@ Add to your ``service.xml``
     <parameters>
         <parameter key="doctrinebevahiour.sluggable.slugger.class">FlintLabs\Bundle\ExampleBundle\MySlugger</parameter>
     </parameters>
+
+### Timestampable
+* Simple behaviour for handling created/updated timestamps
+* Done using annotations
+
+#### Using the behaviour
+
+Add the annotation to your entity class
+
+    <?php
+    namespace FlintLabs\Bundle\ExampleBundle\Entity;
+    use Doctrine\ORM\Mapping as ORM,
+        FlintLabs\Bundle\DoctrineBehavioursBundle\Configuration as Behaviour;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table
+     * @Behaviour\Timestampable
+     */
+    class BlogPost  {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue
+         */
+        public $id;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        public $title;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        public $author;
+
+        /**
+         * @ORM\Column(type="datetime")
+         */
+        public $updated;
+
+        /**
+         * @ORM\Column(type="datetime")
+         */
+        public $created;
+    }

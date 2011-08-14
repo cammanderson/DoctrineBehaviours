@@ -6,12 +6,18 @@
     <parameters>
         <parameter key="doctrinebevahiour.sluggable.slugger.class">FlintLabs\Bundle\DoctrineBehavioursBundle\Slugger</parameter>
         <parameter key="doctrinebevahiour.sluggable.listener.class">FlintLabs\Bundle\DoctrineBehavioursBundle\EventListener\SluggableListener</parameter>
+        <parameter key="doctrinebevahiour.timestampable.listener.class">FlintLabs\Bundle\DoctrineBehavioursBundle\EventListener\TimestampableListener</parameter>
     </parameters>
 
     <services>
         <service id="doctrinebevahiour.sluggable.listener" class="%doctrinebevahiour.sluggable.listener.class%">
             <tag name="doctrine.event_listener" event="prePersist"/>
             <argument type="service" id="doctrinebevahiour.sluggable.slugger"/>
+        </service>
+
+        <service id="doctrinebevahiour.timestampable.listener" class="%doctrinebevahiour.timestampable.listener.class%">
+            <tag name="doctrine.event_listener" event="prePersist"/>
+            <tag name="doctrine.event_listener" event="preUpdate"/>
         </service>
 
         <service id="doctrinebevahiour.sluggable.slugger" class="%doctrinebevahiour.sluggable.slugger.class%"/>

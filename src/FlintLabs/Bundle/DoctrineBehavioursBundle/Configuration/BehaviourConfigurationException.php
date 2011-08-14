@@ -1,9 +1,9 @@
 <?php
 namespace FlintLabs\Bundle\DoctrineBehavioursBundle\Configuration;
 /**
- * Slugger Configuration specific exception, thrown by the sluggable behaviour
+ * Behaviour Configuration specific exception, thrown by the behaviours
  * @author Cam Manderson (cameronmanderson@gmail.com)
  */
-class SluggableConfigurationException extends \Exception
+class BehaviourConfigurationException extends \Exception
 {
 }

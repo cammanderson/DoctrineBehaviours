@@ -49,12 +49,12 @@ class SluggableListener
         // Obtain the configuration
         $configuration = $this->obtainConfiguration($entity);
         if (empty($configuration))
-            throw new Configuration\SluggableConfigurationException('Entity does not contain a sluggable configuration');
+            throw new Configuration\BehaviourConfigurationException('Entity does not contain a sluggable configuration');
 
         // Obtain configuration
         $slugField = $configuration->value;
         if (empty($slugField))
-            throw new Configuration\SluggableConfigurationException('Missing slug @Sluggable("...") field in annotation');
+            throw new Configuration\BehaviourConfigurationException('Missing slug @Sluggable("...") field in annotation');
 
         // Test for values in the entity
         $repository = $entityManager->getRepository(get_class($entity));
@@ -92,12 +92,12 @@ class SluggableListener
         // Obtain the configuration
         $configuration = $this->obtainConfiguration($entity);
         if (empty($configuration))
-            throw new Configuration\SluggableConfigurationException('Entity does not contain a sluggable configuration');
+            throw new Configuration\BehaviourConfigurationException('Entity does not contain a sluggable configuration');
 
         // Obtain the configuration fields
         $slugFrom = $configuration->fields;
         if(!is_array($slugFrom)) $slugFrom = array($slugFrom);
-        if (empty($slugFrom)) throw new SluggableException('Missing slug from fields @Sluggable(from={...}) in annotation');
+        if (empty($slugFrom)) throw new BehaviourConfigurationException('Missing slug from fields @Sluggable(fields={...}) in annotation');
 
         // Look through the properties
         $values = array();
@@ -108,11 +108,11 @@ class SluggableListener
             } else {
                 $reflectionClass = new \ReflectionClass(get_class($entity));
                 if(!$reflectionClass->hasProperty($from)) {
-                    throw new Configuration\SluggableConfigurationException('Slug field "' . $from . '" does not exist for class ' . get_class($entity));
+                    throw new Configuration\BehaviourConfigurationException('Slug field "' . $from . '" does not exist for class ' . get_class($entity));
                 } else {
                     $property = $reflectionClass->getProperty($from);
                     if($property->isPrivate() || $property->isProtected()) {
-                        throw new Configuration\SluggableConfigurationException('Slug field "' . $from . '" is not accessible ' . get_class($entity));
+                        throw new Configuration\BehaviourConfigurationException('Slug field "' . $from . '" is not accessible ' . get_class($entity));
                     } else {
                         $value = $entity->$from;
                     }
@@ -138,7 +138,7 @@ class SluggableListener
         // Obtain the configuration
         $configuration = $this->obtainConfiguration($entity);
         if (empty($configuration))
-            throw new Configuration\SluggableConfigurationException('Entity does not contain a sluggable configuration');
+            throw new Configuration\BehaviourConfigurationException('Entity does not contain a sluggable configuration');
 
         // Set the value on the object
         $field = $configuration->value;
@@ -148,11 +148,11 @@ class SluggableListener
         } else {
             $reflectionClass = new \ReflectionClass(get_class($entity));
             if(!$reflectionClass->hasProperty($field)) {
-                throw new Configuration\SluggableConfigurationException('Slug field "' . $field . '" does not exist for class ' . get_class($entity));
+                throw new Configuration\BehaviourConfigurationException('Slug field "' . $field . '" does not exist for class ' . get_class($entity));
             } else {
                 $property = $reflectionClass->getProperty($field);
                 if($property->isPrivate() || $property->isProtected()) {
-                    throw new Configuration\SluggableConfigurationException('Slug field "' . $field . '" is not accessible ' . get_class($entity));
+                    throw new Configuration\BehaviourConfigurationException('Slug field "' . $field . '" is not accessible ' . get_class($entity));
                 } else {
                     $entity->$field = $value;
                 }
