@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="DoctrineBehaviours Test Suite">
+            <directory suffix="Test.php">./tests/DoctrineBehaviours/Test/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+    </php>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/FlintLabs/Bundle/DoctrineBehavioursBundle/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
